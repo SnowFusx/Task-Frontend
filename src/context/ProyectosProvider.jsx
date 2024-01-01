@@ -1,10 +1,10 @@
 import { useState, useEffect, createContext } from 'react';
 import clienteAxios from '../config/clienteAxios';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
 import useAuth from '../hooks/useAuth';
-import { obtenerProyectos } from '../../../backend/controllers/proyectoController';
 import io from 'socket.io-client';
+import { toast } from 'sonner';
+// import { obtenerProyectos } from '../../../backend/controllers/proyectoController';
 let socket;
 
 const ProyectosContext = createContext();
