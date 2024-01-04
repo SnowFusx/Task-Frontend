@@ -30,7 +30,7 @@ function App() {
 								element={<OlvidePassword />}
 							/>
 							<Route
-								path='olvide-password/1hg6khob3tra3bdbqcn'
+								path='olvide-password/:token'
 								element={<NuevoPassword />}
 							/>
 							<Route
