@@ -2,7 +2,9 @@ import { useState } from 'react';
 import Alerta from '../components/Alerta';
 import { Link } from 'react-router-dom';
 import clienteAxios from '../config/clienteAxios';
-import logo from '../assets/task.png';
+import TextField from '@mui/material/TextField';
+import { blueGrey } from '@mui/material/colors';
+import PasswordOutlinedIcon from '@mui/icons-material/PasswordOutlined';
 
 const OlvidePassword = () => {
 	const [email, setEmail] = useState('');
@@ -50,24 +52,21 @@ const OlvidePassword = () => {
 				onSubmit={handleSubmit}
 			>
 				<div className='flex justify-center'>
-					<img src={logo} alt='logo' className='w-20 mb-2' />
+					<PasswordOutlinedIcon
+						sx={{ fontSize: 40, color: blueGrey[900] }}
+					/>
 				</div>
 				<p className='text-gray-600 text-lg font-semibold items-center text-center'>
 					Olvidé mi contraseña - Restaurar
 				</p>
-				<div className='my-5'>
-					<label
-						className=' text-gray-600 block text-md
-						font-bold'
-						htmlFor='email'
-					>
-						Email
-					</label>
-					<input
+				<div className='flex flex-col gap-5 my-5'>
+					<TextField
 						id='email'
+						label='Email'
+						variant='outlined'
+						size='normal'
 						type='email'
-						placeholder='Email con el que te registraste'
-						className='w-full mt-3 p-3 border rounded-xl bg-gray-50'
+						fullWidth
 						value={email}
 						onChange={e => setEmail(e.target.value)}
 					/>
@@ -78,22 +77,22 @@ const OlvidePassword = () => {
 					value='Restaurar contraseña'
 					className='bg-sky-950 w-full mb-5 py-3 text-white uppercase font-bold rounded hover:bg-sky-700 transition duration-300 cursor-pointer'
 				/>
+				<nav className='lg:flex lg:justify-between mb-10'>
+					<Link
+						to='/registrar'
+						className='block text-center text-slate-500 text-sm  hover:text-gray-700'
+					>
+						¿No tienes una cuenta?{' '}
+						<span className='font-bold'>Regístrate</span>
+					</Link>
+					<Link
+						to='/'
+						className='block text-center text-slate-500 text-sm  hover:text-gray-700'
+					>
+						Volver al login
+					</Link>
+				</nav>
 			</form>
-
-			<nav className='lg:flex lg:justify-between'>
-				<Link
-					to='/'
-					className='block text-center text-slate-500 text-sm my-3 uppercase hover:text-gray-700'
-				>
-					Volver al Login
-				</Link>
-				<Link
-					to='/registrar'
-					className='block text-center text-slate-500 text-sm my-3 uppercase hover:text-gray-700'
-				>
-					No tengo cuenta, quiero registrarme
-				</Link>
-			</nav>
 		</>
 	);
 };

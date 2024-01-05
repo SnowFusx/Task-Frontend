@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Alerta from '../components/Alerta';
 import clienteAxios from '../config/clienteAxios';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import { red, blueGrey } from '@mui/material/colors';
+import GppBadOutlinedIcon from '@mui/icons-material/GppBadOutlined';
 
 const ConfirmarCuenta = () => {
 	const params = useParams();
@@ -34,38 +37,48 @@ const ConfirmarCuenta = () => {
 
 	return (
 		<>
-			<div className='flex justify-center'>
-				<img src={logo} alt='logo' className='w-20 mb-2' />
+			<div className='my-10 bg-white shadow-xl rounded-lg p-10'>
+				{cuentaConfirmada ? (
+					<>
+						<div className='flex flex-col justify-center items-center'>
+							<div className='flex justify-center'>
+								<CheckOutlinedIcon
+									sx={{ fontSize: 40, color: blueGrey[900] }}
+								/>
+							</div>
+
+							<Alerta
+								alerta={{
+									msg: 'Cuenta confirmada correctamente',
+									error: false,
+								}}
+							/>
+
+							<Link
+								to='/'
+								className='block text-center text-slate-500 text-sm  hover:text-gray-700'
+							>
+								Volver al Login
+							</Link>
+						</div>
+					</>
+				) : (
+					<>
+						<div className='flex flex-col justify-center items-center'>
+							<GppBadOutlinedIcon
+								sx={{ fontSize: 40, color: red[700] }}
+							/>
+							{msg && <Alerta alerta={alerta} />}
+							<Link
+								to='/'
+								className='block text-center text-slate-500 text-sm  hover:text-gray-700'
+							>
+								Volver al Login
+							</Link>
+						</div>
+					</>
+				)}
 			</div>
-			<h1 className='text-center text-2xl font-light text-gray-700'>
-				Confirmar Cuenta
-			</h1>
-			{cuentaConfirmada ? (
-				<div className='my-10 bg-white shadow rounded-lg p-10'>
-					<Alerta
-						alerta={{
-							msg: 'Cuenta confirmada correctamente',
-							error: false,
-						}}
-					/>
-					<Link
-						to='/'
-						className='block text-center text-slate-500 text-sm my-3 uppercase hover:text-gray-700'
-					>
-						Volver al Login
-					</Link>
-				</div>
-			) : (
-				<div className='my-10 bg-white shadow rounded-lg p-10'>
-					{msg && <Alerta alerta={alerta} />}
-					<Link
-						to='/'
-						className='block text-center text-slate-500 text-sm my-3 uppercase hover:text-gray-700'
-					>
-						Volver al Login
-					</Link>
-				</div>
-			)}
 		</>
 	);
 };

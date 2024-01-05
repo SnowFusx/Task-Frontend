@@ -137,7 +137,7 @@ const Login = () => {
 								</Button>
 							}
 						>
-							<AlertTitle>Usa un usuario de prueba</AlertTitle>
+							<AlertTitle>Usuario de prueba</AlertTitle>
 							demo@example.com | Contraseña: TokyoPass1@
 						</Alert>
 					</form>
