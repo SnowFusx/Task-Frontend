@@ -1,13 +1,16 @@
-import { useState } from 'react';
 import taskdemo from '../assets/task-snowdevmartin.png';
-import Login from '../pages/Login';
+import { Link } from 'react-router-dom';
 
 export const InfoSidebarAuth = ({ setIniciarSesion }) => {
 	const isMobile = window.innerWidth <= 640;
 
 	return (
 		<>
-			<h1 className='text-4xl font-bold text-sky-950 font-barlow'>
+			<h1
+				className={`${
+					isMobile ? 'text-2xl' : 'text-4xl'
+				} font-bold text-sky-950 font-barlow`}
+			>
 				Gestión de Proyectos
 			</h1>
 			<img src={taskdemo} alt='task-demo' className='w-full rounded-lg' />
@@ -23,12 +26,22 @@ export const InfoSidebarAuth = ({ setIniciarSesion }) => {
 				flexible.
 			</p>
 			{isMobile && (
-				<button
-					className='bg-sky-950 w-full mb-5 py-3 text-white uppercase font-bold rounded hover:bg-sky-700 transition duration-300 cursor-pointer'
-					onClick={() => setIniciarSesion(false)}
-				>
-					Iniciar Sesión
-				</button>
+				<>
+					<div className='flex gap-5 my-5'>
+						<button
+							className='bg-sky-950 w-full py-3 text-white uppercase text-sm font-bold rounded hover:bg-sky-700 transition duration-300 cursor-pointer'
+							onClick={() => setIniciarSesion(false)}
+						>
+							Iniciar Sesión
+						</button>
+						<Link
+							to='/registrar'
+							className='bg-sky-900 w-full py-3 text-white uppercase text-sm text-center font-bold rounded hover:bg-sky-700 transition duration-300 cursor-pointer'
+						>
+							Regístrate
+						</Link>
+					</div>
+				</>
 			)}
 		</>
 	);
