@@ -33,7 +33,7 @@ const ProyectosProvider = ({ children }) => {
 			try {
 				const token = localStorage.getItem('token');
 				if (!token) {
-					navigate('/');
+					//navigate('/');
 					return;
 				}
 				const config = {
