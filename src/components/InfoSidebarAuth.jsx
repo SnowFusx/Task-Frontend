@@ -1,5 +1,4 @@
 import taskdemo from '../assets/task-snowdevmartin.png';
-import { Link } from 'react-router-dom';
 
 export const InfoSidebarAuth = ({ setIniciarSesion }) => {
 	const isMobile = window.innerWidth <= 640;
@@ -34,12 +33,6 @@ export const InfoSidebarAuth = ({ setIniciarSesion }) => {
 						>
 							Iniciar Sesión
 						</button>
-						<Link
-							to='/registrar'
-							className='bg-sky-900 w-full py-3 text-white uppercase text-sm text-center font-bold rounded hover:bg-sky-700 transition duration-300 cursor-pointer'
-						>
-							Regístrate
-						</Link>
 					</div>
 				</>
 			)}
