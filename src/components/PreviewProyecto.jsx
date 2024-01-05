@@ -22,7 +22,7 @@ const PreviewProyecto = ({ proyecto }) => {
 		<div className={` bg-white shadow mt-5 rounded-lg h-48 w-64 ${border}`}>
 			<div className='flex flex-col h-full justify-between p-5'>
 				<Link to={`/proyectos/${_id}`} className='flex-1  font-bold'>
-					<p className='flex-1'>{nombre}</p>
+					<p className='flex-1'>{nombre.slice(0, 20)}...</p>
 
 					<p className='text-sm text-gray-500'>
 						{`${cliente} , creado el `}
