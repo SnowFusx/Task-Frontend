@@ -30,7 +30,7 @@ const PreviewProyecto = ({ proyecto }) => {
 							{`${formatearFecha(createdAt)}`}
 						</span>
 					</p>
-					<p className='text-xs font-normal mt-2 text-gray-500'>
+					<p className='text-xs font-normal my-2 text-gray-500'>
 						{descripcion.slice(0, 100)}...
 					</p>
 				</Link>
