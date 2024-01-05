@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Alerta from '../components/Alerta';
 import clienteAxios from '../config/clienteAxios';
+import TextField from '@mui/material/TextField';
+import PersonPinOutlinedIcon from '@mui/icons-material/PersonPinOutlined';
+import { blueGrey } from '@mui/material/colors';
 
 const Registrar = () => {
 	const [nombre, setNombre] = useState('');
@@ -90,100 +93,91 @@ const Registrar = () => {
 
 	return (
 		<>
-			<h1 className='text-sky-900 font-black text-6xl capitalize'>
-				Crea tu cuenta y administra tus{' '}
-				<span className='text-slate-700'>proyectos</span>
-			</h1>
-
 			{msg && <Alerta alerta={alerta} />}
 
 			<form
-				className='my-10 bg-white shadow rounded-lg p-10'
+				className='my-10 bg-white shadow-xl rounded-lg p-10'
 				onSubmit={handleCrearCuenta}
 			>
-				<div className='my-5'>
-					<label
-						className='uppercase text-gray-600 block text-xl
-						font-bold'
-						htmlFor='nombre'
-					>
-						Nombre
-					</label>
-					<input
+				<div className='flex justify-center'>
+					<PersonPinOutlinedIcon
+						sx={{ fontSize: 40, color: blueGrey[900] }}
+					/>
+				</div>
+				<p className='text-gray-600 text-lg font-semibold items-center text-center'>
+					Regístrate en task
+				</p>
+				<div className='flex flex-col gap-5 my-5'>
+					<TextField
 						id='nombre'
+						label='Nombre'
+						variant='outlined'
+						size='normal'
 						type='text'
-						placeholder='Tu Nombre'
-						className='w-full mt-3 p-3 border rounded-xl bg-gray-50'
+						fullWidth
 						value={nombre}
 						onChange={e => setNombre(e.target.value)}
 					/>
-				</div>
-				<div className='my-5'>
-					<label
-						className='uppercase text-gray-600 block text-xl
-						font-bold'
-						htmlFor='email'
-					>
-						Email
-					</label>
-					<input
+					<TextField
 						id='email'
+						label='Email'
+						variant='outlined'
+						size='normal'
 						type='email'
-						placeholder='Email de Registro'
-						className='w-full mt-3 p-3 border rounded-xl bg-gray-50'
+						fullWidth
 						value={email}
 						onChange={e => setEmail(e.target.value)}
 					/>
-				</div>
-				<div className='my-5'>
-					<label
-						className='uppercase text-gray-600 block text-xl
-						font-bold'
-						htmlFor='password'
-					>
-						Password
-					</label>
-					<input
+					<TextField
 						id='password'
+						label='Password'
+						variant='outlined'
+						size='normal'
 						type='password'
-						placeholder='Password de Registro'
-						className='w-full mt-3 p-3 border rounded-xl bg-gray-50'
+						fullWidth
 						value={password}
 						onChange={e => setPassword(e.target.value)}
+						error={equalPassword === 'border-red-500'}
+						color={
+							equalPassword === 'border-green-500'
+								? 'success'
+								: ''
+						}
 					/>
-				</div>
-				<div className='my-5'>
-					<label
-						className='uppercase text-gray-600 block text-xl
-						font-bold'
-						htmlFor='password2'
-					>
-						Repetir Password
-					</label>
-					<input
+					<TextField
 						id='password2'
+						label='Repite el password'
+						variant='outlined'
+						size='normal'
 						type='password'
-						placeholder='Repetir tu Password'
-						className={`w-full mt-3 p-3 border rounded-xl bg-gray-50 focus:outline-none ${equalPassword}`}
+						fullWidth
 						value={password2}
 						onChange={e => setPassword2(e.target.value)}
+						error={equalPassword === 'border-red-500'}
+						color={
+							equalPassword === 'border-green-500'
+								? 'success'
+								: ''
+						}
 					/>
 				</div>
+
 				<input
 					type='submit'
 					value='Crear Cuenta'
-					className='bg-sky-700 w-full mb-5 py-3 text-white uppercase font-bold rounded hover:bg-sky-800 transition duration-300 cursor-pointer'
+					className='bg-sky-950 w-full mb-5 py-3 text-white uppercase font-bold rounded hover:bg-sky-700 transition duration-300 cursor-pointer'
 				/>
-			</form>
 
-			<nav className='lg:flex lg:justify-center'>
-				<Link
-					to='/'
-					className='block text-center text-slate-500 text-sm my-3 uppercase hover:text-gray-700'
-				>
-					Ya tengo cuenta, volver al login
-				</Link>
-			</nav>
+				<nav className='lg:flex justify-center mb-10'>
+					<Link
+						to='/'
+						className='block text-center text-slate-500 text-sm  hover:text-gray-700'
+					>
+						Ya tengo cuenta,{' '}
+						<span className='font-bold'>volver al login</span>
+					</Link>
+				</nav>
+			</form>
 		</>
 	);
 };

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import clienteAxios from '../config/clienteAxios';
 import Alerta from '../components/Alerta';
+import logo from '../assets/task.png';
 
 const NuevoPassword = () => {
 	const [alerta, setAlerta] = useState({});
@@ -63,10 +64,6 @@ const NuevoPassword = () => {
 
 	return (
 		<>
-			<h1 className='text-sky-900 font-black text-6xl capitalize'>
-				Reestablece tu Password y no pierdas acceso a tus{' '}
-				<span className='text-slate-700'>proyectos</span>
-			</h1>
 			{msg && <Alerta alerta={alerta} />}
 
 			{tokenValido && (
@@ -74,6 +71,12 @@ const NuevoPassword = () => {
 					className='my-10 bg-white shadow rounded-lg p-10'
 					onSubmit={handleSubmit}
 				>
+					<div className='flex justify-center'>
+						<img src={logo} alt='logo' className='w-20 mb-2' />
+					</div>
+					<p className='text-gray-600 text-lg font-semibold items-center text-center'>
+						Reestablece tu Password
+					</p>
 					<div className='my-5'>
 						<label
 							className='uppercase text-gray-600 block text-xl

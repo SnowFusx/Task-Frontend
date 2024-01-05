@@ -8,7 +8,12 @@ export default {
 		'./src/**/*.js',
 	],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				barlow: ['Barlow', 'sans-serif'],
+				inter: ['Inter', 'sans-serif'],
+			},
+		},
 	},
 	plugins: [],
 };

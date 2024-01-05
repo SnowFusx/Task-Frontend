@@ -3,6 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import Alerta from '../components/Alerta';
 import clienteAxios from '../config/clienteAxios';
 import useAuth from '../hooks/useAuth';
+import TextField from '@mui/material/TextField';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import { blueGrey } from '@mui/material/colors';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Button from '@mui/material/Button';
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -17,6 +23,11 @@ const Login = () => {
 			navigate('/proyectos');
 		}
 	}, []);
+
+	const handleFillForm = () => {
+		setEmail('demo@example.com');
+		setPassword('TokyoPass1@');
+	};
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -57,72 +68,79 @@ const Login = () => {
 				navigate('/proyectos')
 			) : (
 				<>
-					<h1 className='text-sky-900 font-black text-6xl capitalize'>
-						Inicia sesión y administra tus{' '}
-						<span className='text-slate-700'>proyectos</span>
-					</h1>
-
 					{msg && <Alerta alerta={alerta} />}
 
 					<form
-						className='my-10 bg-white shadow rounded-lg p-10'
+						className='my-10 bg-white shadow-xl rounded-lg p-10'
 						onSubmit={handleSubmit}
 					>
-						<div className='my-5'>
-							<label
-								className='uppercase text-gray-600 block text-xl
-						font-bold'
-								htmlFor='email'
-							>
-								Email
-							</label>
-							<input
+						<div className='flex justify-center'>
+							<PersonOutlineOutlinedIcon
+								sx={{ fontSize: 40, color: blueGrey[900] }}
+							/>
+						</div>
+						<p className='text-gray-600 text-lg font-semibold items-center text-center'>
+							Inicia sesión en task
+						</p>
+						<div className='flex flex-col gap-5 my-5'>
+							<TextField
 								id='email'
+								label='Email'
+								variant='outlined'
+								size='normal'
 								type='email'
-								placeholder='Email de Registro'
-								className='w-full mt-3 p-3 border rounded-xl bg-gray-50'
+								fullWidth
 								value={email}
 								onChange={e => setEmail(e.target.value)}
 							/>
-						</div>
-						<div className='my-5'>
-							<label
-								className='uppercase text-gray-600 block text-xl
-						font-bold'
-								htmlFor='password'
-							>
-								Password
-							</label>
-							<input
+							<TextField
 								id='password'
+								label='Password'
+								variant='outlined'
+								size='normal'
 								type='password'
-								placeholder='Password de Registro'
-								className='w-full mt-3 p-3 border rounded-xl bg-gray-50'
+								fullWidth
 								value={password}
 								onChange={e => setPassword(e.target.value)}
 							/>
 						</div>
+						<nav className='lg:flex lg:justify-between mb-10'>
+							<Link
+								to='/registrar'
+								className='block text-center text-slate-500 text-sm  hover:text-gray-700'
+							>
+								¿No tienes una cuenta?{' '}
+								<span className='font-bold'>Regístrate</span>
+							</Link>
+							<Link
+								to='/olvide-password'
+								className='block text-center text-slate-500 text-sm  hover:text-gray-700'
+							>
+								Olvidé mi password
+							</Link>
+						</nav>
+
 						<input
 							type='submit'
 							value='Iniciar Sesión'
 							className='bg-sky-950 w-full mb-5 py-3 text-white uppercase font-bold rounded hover:bg-sky-700 transition duration-300 cursor-pointer'
 						/>
+						<Alert
+							severity='warning'
+							action={
+								<Button
+									color='inherit'
+									size='small'
+									onClick={handleFillForm}
+								>
+									USAR
+								</Button>
+							}
+						>
+							<AlertTitle>Usa un usuario de prueba</AlertTitle>
+							demo@example.com | Contraseña: TokyoPass1@
+						</Alert>
 					</form>
-
-					<nav className='lg:flex lg:justify-between'>
-						<Link
-							to='/registrar'
-							className='block text-center text-slate-500 text-sm my-3 uppercase hover:text-gray-700'
-						>
-							¿No tienes una cuenta? Regístrate
-						</Link>
-						<Link
-							to='/olvide-password'
-							className='block text-center text-slate-500 text-sm my-3 uppercase hover:text-gray-700'
-						>
-							Olvidé mi password
-						</Link>
-					</nav>
 				</>
 			)}
 		</>

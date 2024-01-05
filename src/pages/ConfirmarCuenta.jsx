@@ -34,9 +34,11 @@ const ConfirmarCuenta = () => {
 
 	return (
 		<>
-			<h1 className='text-sky-600 font-black text-6xl capitalize'>
-				Confirma tu cuenta y comienza a crear tus{' '}
-				<span className='text-slate-700'>proyectos</span>
+			<div className='flex justify-center'>
+				<img src={logo} alt='logo' className='w-20 mb-2' />
+			</div>
+			<h1 className='text-center text-2xl font-light text-gray-700'>
+				Confirmar Cuenta
 			</h1>
 			{cuentaConfirmada ? (
 				<div className='my-10 bg-white shadow rounded-lg p-10'>
