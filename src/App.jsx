@@ -15,6 +15,7 @@ import EditarProyecto from './pages/EditarProyecto';
 import { AuthProvider } from './context/AuthProvider';
 import { ProyectosProvider } from './context/ProyectosProvider';
 import NuevoColaborador from './pages/NuevoColaborador';
+import PaginaNoEncontrada from './pages/PaginaNoEncontrada';
 
 function App() {
 	return (
@@ -58,6 +59,8 @@ function App() {
 								element={<NuevoColaborador />}
 							/>
 						</Route>
+						{/* Ruta comodín para manejar rutas no coincidentes */}
+						<Route path='*' element={<PaginaNoEncontrada />} />
 					</Routes>
 				</ProyectosProvider>
 			</AuthProvider>
