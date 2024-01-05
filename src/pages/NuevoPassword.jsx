@@ -6,12 +6,20 @@ import TextField from '@mui/material/TextField';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import { red, blueGrey } from '@mui/material/colors';
 import GppBadOutlinedIcon from '@mui/icons-material/GppBadOutlined';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const NuevoPassword = () => {
 	const [alerta, setAlerta] = useState({});
 	const [tokenValido, setTokenValido] = useState(false);
 	const [password, setPassword] = useState('');
 	const [passwordModificado, setPasswordModificado] = useState(false);
+
+	const [showPassword, setShowPassword] = useState(false);
+	const handleClickShowPassword = () => setShowPassword(!showPassword);
+	const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
 	const params = useParams();
 	const { token } = params;
@@ -97,12 +105,38 @@ const NuevoPassword = () => {
 											label='Nuevo Password'
 											variant='outlined'
 											size='normal'
-											type='password'
 											fullWidth
 											value={password}
 											onChange={e =>
 												setPassword(e.target.value)
 											}
+											type={
+												showPassword
+													? 'text'
+													: 'password'
+											}
+											InputProps={{
+												// <-- This is where the toggle button is added.
+												endAdornment: (
+													<InputAdornment position='end'>
+														<IconButton
+															aria-label='toggle password visibility'
+															onClick={
+																handleClickShowPassword
+															}
+															onMouseDown={
+																handleMouseDownPassword
+															}
+														>
+															{showPassword ? (
+																<Visibility />
+															) : (
+																<VisibilityOff />
+															)}
+														</IconButton>
+													</InputAdornment>
+												),
+											}}
 										/>
 									</div>
 
