@@ -5,6 +5,10 @@ import clienteAxios from '../config/clienteAxios';
 import TextField from '@mui/material/TextField';
 import PersonPinOutlinedIcon from '@mui/icons-material/PersonPinOutlined';
 import { blueGrey } from '@mui/material/colors';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const Registrar = () => {
 	const [nombre, setNombre] = useState('');
@@ -13,6 +17,10 @@ const Registrar = () => {
 	const [password2, setPassword2] = useState('');
 	const [alerta, setAlerta] = useState({});
 	const [equalPassword, setEqualPassword] = useState('');
+
+	const [showPassword, setShowPassword] = useState(false);
+	const handleClickShowPassword = () => setShowPassword(!showPassword);
+	const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
 	const handleCrearCuenta = async e => {
 		e.preventDefault();
@@ -133,7 +141,6 @@ const Registrar = () => {
 						label='Password'
 						variant='outlined'
 						size='normal'
-						type='password'
 						fullWidth
 						value={password}
 						onChange={e => setPassword(e.target.value)}
@@ -143,13 +150,31 @@ const Registrar = () => {
 								? 'success'
 								: ''
 						}
+						type={showPassword ? 'text' : 'password'}
+						InputProps={{
+							// <-- This is where the toggle button is added.
+							endAdornment: (
+								<InputAdornment position='end'>
+									<IconButton
+										aria-label='toggle password visibility'
+										onClick={handleClickShowPassword}
+										onMouseDown={handleMouseDownPassword}
+									>
+										{showPassword ? (
+											<Visibility />
+										) : (
+											<VisibilityOff />
+										)}
+									</IconButton>
+								</InputAdornment>
+							),
+						}}
 					/>
 					<TextField
 						id='password2'
 						label='Repite el password'
 						variant='outlined'
 						size='normal'
-						type='password'
 						fullWidth
 						value={password2}
 						onChange={e => setPassword2(e.target.value)}
@@ -159,6 +184,25 @@ const Registrar = () => {
 								? 'success'
 								: ''
 						}
+						type={showPassword ? 'text' : 'password'}
+						InputProps={{
+							// <-- This is where the toggle button is added.
+							endAdornment: (
+								<InputAdornment position='end'>
+									<IconButton
+										aria-label='toggle password visibility'
+										onClick={handleClickShowPassword}
+										onMouseDown={handleMouseDownPassword}
+									>
+										{showPassword ? (
+											<Visibility />
+										) : (
+											<VisibilityOff />
+										)}
+									</IconButton>
+								</InputAdornment>
+							),
+						}}
 					/>
 				</div>
 
