@@ -31,7 +31,7 @@ const Sidebar = () => {
 						Mi perfil
 					</p>
 					<Link
-						to='/'
+						to='/editar-perfil'
 						className='flex text-gray-500 mt-2 font-semibold text-lg  hover:text-gray-900 transition duration-300'
 					>
 						Editar perfil
