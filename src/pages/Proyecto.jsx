@@ -152,7 +152,7 @@ const Proyecto = () => {
 						{descripcion?.slice(0, 100)}...
 					</p>
 					<ScrollDialog
-						buttonName={'Ver completa'}
+						buttonName={'Ver más'}
 						contenido={descripcion}
 						title={'Descripción'}
 					/>
