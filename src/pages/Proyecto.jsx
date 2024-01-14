@@ -14,6 +14,8 @@ import LinksNavigation from '../components/LinksNavigation.jsx';
 import io from 'socket.io-client';
 let socket;
 
+import ScrollDialog from '../components/Dialog.jsx';
+
 import {
 	CrearTareaIcon,
 	EditIcon,
@@ -41,6 +43,8 @@ const Proyecto = () => {
 		eliminarTareaProyecto,
 		actualizarTareaProyecto,
 	} = useProyectos();
+
+	const { nombre, descripcion, cliente } = proyecto;
 
 	useEffect(() => {
 		obtenerProyecto(params.id);
@@ -73,8 +77,6 @@ const Proyecto = () => {
 			}
 		});
 	});
-
-	const { nombre, descripcion, cliente, fechaEntrega } = proyecto;
 
 	const { msg } = alerta;
 
@@ -146,7 +148,14 @@ const Proyecto = () => {
 				</div>
 				<div className='bg-white rounded-lg grow min-w-[300px] flex-1 shadow p-5'>
 					<h2 className='font-bold text-xl mb-3'>Descripción</h2>
-					<p className='text-gray-600'>{descripcion}</p>
+					<p className='text-gray-600'>
+						{descripcion?.slice(0, 100)}...
+					</p>
+					<ScrollDialog
+						buttonName={'Ver completa'}
+						contenido={descripcion}
+						title={'Descripción'}
+					/>
 				</div>
 			</div>
 

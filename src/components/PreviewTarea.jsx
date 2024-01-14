@@ -10,6 +10,7 @@ import {
 	NoCheckedIcon,
 	CheckedIcon,
 } from './constants';
+import ScrollDialog from './Dialog.jsx';
 
 const PreviewTarea = ({ tarea }) => {
 	const {
@@ -38,6 +39,8 @@ const PreviewTarea = ({ tarea }) => {
 
 	const estadoColor = estado ? 'bg-gray-300' : 'bg-white';
 	const estadoTexto = estado ? 'line-through text-gray-500' : '';
+
+	const descripcionLarga = descripcion?.length > 50 ? true : false;
 
 	return (
 		<div
@@ -108,9 +111,16 @@ const PreviewTarea = ({ tarea }) => {
 					<p className='text-sm mt-1'>
 						Descripción:{' '}
 						<span className='text-gray-600 font-light'>
-							{descripcion}
+							{descripcion?.slice(0, 50)}...
 						</span>
 					</p>
+					{descripcionLarga && (
+						<ScrollDialog
+							buttonName={'Ver más'}
+							title={nombre}
+							contenido={descripcion}
+						/>
+					)}
 				</div>
 			</div>
 		</div>
